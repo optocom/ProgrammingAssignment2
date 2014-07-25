@@ -12,13 +12,13 @@
 ##     then cacheSolve retrieves the inverse from the cache.
 ##     The matrix supplied should be invertible.
 
-## usage
+## Usage
 ## example
-## a <- matrix(rnorm(9,1,2),3,3) # set up matrix a
-## c <- solve(a) # solve the inverse of a
-## b <- makeCacheMatrix(a) # call the first function
+## a <- matrix(rnorm(9,1,2),3,3) # set up 3x3 matrix a
+## c <- solve(a) # solve the inverse of a, to ensure it is invertible.
+## b <- makeCacheMatrix(a) # call the first function to set up a list of functions
 ## b$get() # should be the same as matrix a
-## cacheSolve(b) # the inverse of a, same as c, already in the cache
+## cacheSolve(b) # the inverse of a, same as c, just computed
 ## b$getMat() # check the cached inverse of a
 ## cacheSolve(b) # the cached inverse of a without solving it again
 
@@ -46,6 +46,7 @@ makeCacheMatrix <- function(x = matrix()) {
 ## This function returns the inverse of the matrix
 ##     by either solving the matrix
 ##     or getting the cached inverse
+## The parameter should be the output of the above function
 
 cacheSolve <- function(x, ...) {
 	m <- x$getMat()
